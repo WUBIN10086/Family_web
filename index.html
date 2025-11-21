@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生日快乐！Happy Birthday!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="animate-pop">生日快乐</h1>
+            <p class="subtitle">岁月静好，温暖相伴</p>
+            <div class="scroll-indicator">
+                <span>↓</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Timeline Section: Growing Up -->
+        <section class="section timeline-section">
+            <h2 class="section-title">成长的足迹</h2>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="year-label">2022</div>
+                    <div class="photo-card">
+                        <img src="photo/Year_2022_birthday.jpg" alt="2022 Birthday" loading="lazy">
+                        <div class="caption">美好的2022</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="year-label">2023</div>
+                    <div class="photo-card">
+                        <img src="photo/Year_2023_birthday.jpg" alt="2023 Birthday" loading="lazy">
+                        <div class="caption">精彩的2024</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Family Gallery: Surrounded by Love -->
+        <section class="section gallery-section">
+            <h2 class="section-title">幸福的时刻</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="photo/family_photo1.jpg" alt="Family Photo 1" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/family_photo2.jpg" alt="Family Photo 2" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/family_photo3.png" alt="Family Photo 3" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="photo/family_photo4.png" alt="Family Photo 4" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- Heritage Section: Timeless Memories -->
+        <section class="section heritage-section">
+            <h2 class="section-title">永远的牵挂</h2>
+            <div class="heritage-container">
+                <div class="heritage-card">
+                    <div class="img-wrapper">
+                        <img src="photo/yong_Grandma.jpg" alt="Grandma" loading="lazy">
+                    </div>
+                    <p>亲爱的姥姥</p>
+                </div>
+                <div class="heritage-card">
+                    <div class="img-wrapper">
+                        <img src="photo/yong_Grandpa.jpg" alt="Grandpa" loading="lazy">
+                    </div>
+                    <p>亲爱的姥爷</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>❤️ Made with Love for You ❤️</p>
+        <p class="date">2025</p>
+    </footer>
+
+    <script>
+        // Simple intersection observer for fade-in animation
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            section.classList.add('fade-in-section');
+            observer.observe(section);
+        });
+    </script>
+</body>
+
+</html>
