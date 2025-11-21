@@ -193,6 +193,39 @@ body {
     font-weight: bold;
 }
 
+/* Video Section */
+.video-section {
+    background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+    padding: 5rem 2rem;
+    max-width: 100% !important;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.video-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    background: var(--card-bg);
+    padding: 1rem;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.family-video {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    border-radius: 15px;
+    background: #000;
+    object-fit: contain;
+}
+
 /* Footer */
 footer {
     text-align: center;
@@ -229,6 +262,67 @@ footer {
     100% { opacity: 1; transform: scale(1); }
 }
 
+/* 音乐播放器 */
+.music-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), #ff8787);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(255, 107, 107, 0.4);
+    z-index: 1000;
+    font-size: 1.8rem;
+}
+
+.music-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(255, 107, 107, 0.5);
+}
+
+.music-btn:active {
+    transform: scale(0.95);
+}
+
+.music-icon {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+/* 音乐播放器动画 */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.music-btn.playing {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.music-btn.playing .music-icon {
+    animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .hero-content h1 {
@@ -241,5 +335,27 @@ footer {
     
     .section-title {
         font-size: 2.5rem;
+    }
+
+    .music-btn {
+        bottom: 1rem;
+        right: 1rem;
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .video-container {
+        padding: 0.5rem;
+        max-width: 100%;
+    }
+
+    .video-section {
+        padding: 3rem 1rem;
+    }
+
+    .family-video {
+        width: 100%;
+        height: auto;
     }
 }

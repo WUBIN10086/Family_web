@@ -63,6 +63,9 @@
                 <div class="gallery-item">
                     <img src="photo/family_photo4.png" alt="Family Photo 4" loading="lazy">
                 </div>
+                <div class="gallery-item">
+                    <img src="photo/grandsons_child.png" alt="Grandsons Child" loading="lazy">
+                </div>
             </div>
         </section>
 
@@ -82,6 +85,24 @@
                     </div>
                     <p>亲爱的姥爷</p>
                 </div>
+                <div class="heritage-card">
+                    <div class="img-wrapper">
+                        <img src="photo/grandma_birthday_memeries.png" alt="Grandma Birthday Memories" loading="lazy">
+                    </div>
+                    <p>美好的回忆</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section class="section video-section">
+            <h2 class="section-title">诚挚的祝福！</h2>
+            <div class="video-container">
+                <video controls class="family-video">
+                    <source src="export_1763733180831.MOV" type="video/quicktime">
+                    <source src="export_1763733180831.MOV" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
             </div>
         </section>
     </main>
@@ -90,6 +111,15 @@
         <p>❤️ Made with Love for You ❤️</p>
         <p class="date">2025</p>
     </footer>
+
+    <!-- 音乐播放器 -->
+    <button class="music-btn" id="playPauseBtn" aria-label="播放/暂停音乐">
+        <span class="music-icon">🎵</span>
+    </button>
+    <audio id="backgroundMusic" loop>
+        <source src="温馨回忆旧时光 Peaceful Piano Relaxat_爱给网_aigei_com.mp3" type="audio/mpeg">
+        您的浏览器不支持音频播放。
+    </audio>
 
     <script>
         // Simple intersection observer for fade-in animation
@@ -108,6 +138,66 @@
         document.querySelectorAll('.section').forEach(section => {
             section.classList.add('fade-in-section');
             observer.observe(section);
+        });
+
+        // 音乐播放器控制
+        const audio = document.getElementById('backgroundMusic');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const musicIcon = playPauseBtn.querySelector('.music-icon');
+
+        // 设置初始音量
+        audio.volume = 0.5;
+
+        // 更新图标和按钮状态
+        function updateMusicState(isPlaying) {
+            if (isPlaying) {
+                musicIcon.textContent = '🎵';
+                playPauseBtn.classList.add('playing');
+            } else {
+                musicIcon.textContent = '🔇';
+                playPauseBtn.classList.remove('playing');
+            }
+        }
+
+        // 尝试自动播放
+        function tryAutoPlay() {
+            audio.play().then(() => {
+                updateMusicState(true);
+            }).catch(err => {
+                // 如果自动播放失败（浏览器限制），保持暂停状态
+                console.log('自动播放被阻止，需要用户交互');
+                updateMusicState(false);
+            });
+        }
+
+        // 页面加载完成后尝试自动播放
+        window.addEventListener('load', () => {
+            // 等待音频元数据加载完成
+            if (audio.readyState >= 2) {
+                tryAutoPlay();
+            } else {
+                audio.addEventListener('loadeddata', tryAutoPlay, { once: true });
+            }
+        });
+
+        // 播放/暂停按钮
+        playPauseBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play().then(() => {
+                    updateMusicState(true);
+                }).catch(err => {
+                    console.log('播放失败:', err);
+                });
+            } else {
+                audio.pause();
+                updateMusicState(false);
+            }
+        });
+
+        // 处理音频加载错误
+        audio.addEventListener('error', (e) => {
+            console.log('音频加载失败，请检查音乐文件路径');
+            playPauseBtn.style.opacity = '0.6';
         });
     </script>
 </body>
